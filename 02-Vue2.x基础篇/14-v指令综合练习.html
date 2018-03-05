@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        #app{
+            width: 600px;
+            border:50px auto
+        }
+
+        fieldset{
+            margin-bottom: 30px
+        }
+
+        fieldset input{
+            width: 200px;
+            height: 30px;
+            margin: 10px 0
+        }
+
+
+        table{
+               /* TODO:px 不能忘记，否则设置无效！！！ */
+            width: 600px;
+            border: orangered 2px solid;
+            text-align: center
+
+         
+        }
+        thead{
+            background-color: orangered
+        }
+
+        .btnBgColor{
+             background-color: orangered
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <fieldset style="border:1px solid red">
+                <legend>学生录入系统</legend>
+                <div>
+                    <span>姓名：</span>
+                    <input type="text"  placeholder="请输入用户名" v-model="newStu.name">
+                </div>
+
+                <div>
+                    <span>年龄：</span>    
+                    <input type="number" placeholder="请输入年龄" v-model="newStu.age">
+                </div>
+
+                <div>
+                    <span>性别：</span>
+                    <select>
+                        <option>M</option>
+                        <option>F</option>
+                    </select>
+                </div>
+
+                <div>
+                    <span>手机：</span>
+                    <input type="text"  placeholder="请输入手机号" v-model="newStu.phone">
+                </div>
+
+                <!-- <button @click="creatNewStudent()" style=" background-color: orangered">创建新用户</button> -->
+
+                <!-- TODO: vBind等号右边的双引号中，必须对自定义的类名用引号包裹！否则渲染失败，console如下：
+                    vue.js:584 [Vue warn]: Property or method "btnBgColor" is not defined on the instance but referenced during render. 
+                    Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property. 
+                    See: https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties.
+                -->
+                <button @click="creatNewStudent()" :class="'btnBgColor'">创建新用户</button>
+
+            </fieldset>
+
+            <!-- FIXME:为何上面语法 会导致VFor 失败！最终发现：是p标签里面属性间隔用了 逗号 导致。属性间隔应该用空格！我去！
+                报错如下： Uncaught DOMException: Failed to execute 'setAttribute' on 'Element': ',' is not a valid attribute name.-->
+            <table>
+                <thead>
+                    <tr>
+                        <td>姓名</td>
+                        <td>性别</td>
+                        <td>年龄</td>
+                        <td>手机</td>
+                        <td>删除</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <!-- vFor是写在tr中，不是tbody中！ -->
+                    <tr v-for="(stu, index) in persons">
+
+                        <!-- 是stu.xx放到{{}}中，不是一部分！ -->
+                        <td>{{stu.name}}</td>
+                        <td>{{stu.gender}}</td>
+                        <td>{{stu.age}}</td>
+                        <td>{{stu.phone}}</td>
+                        <td>
+                            <button @click="deleteStu(index)" style="background-color:red">删除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <script src="js/vue.js"></script>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                persons: [
+                    //FIXME: age对应的也必须是 字符串？NO
+                    { name: '1', gender: 'm', age: 11, phone: '12312312312' },
+                    { name: '2', gender: 'f', age: 12, phone: '12312312322' },
+                    { name: '3', gender: 'f', age: 13, phone: '34124234222' },
+                    { name: '4', gender: 'f', age: 14, phone: '45544542222' },
+                    { name: '5', gender: 'm', age: 15, phone: '56767522226' }
+                ],
+                newStu: { name: '', gender: 'm', age: 0, phone: '' }
+            },
+            methods: {
+                creatNewStudent() {
+
+                    // TODO:引用数据时，必须使用 this.
+                    //数组新增对象到首位的方法是 unshift;其他方法：shift、push、pop、indexof、filter、every...
+                    if (this.newStu.name === '') {
+                        alert('姓名不能为空');
+                        return;
+                    }
+                    if (this.newStu.age <= 0) {
+                        alert('年龄不能小于0');
+                        return;
+                    }
+                    if (this.newStu.phone === '') {
+                        alert('手机号不能为空');
+                        return;
+                    }
+                    this.persons.unshift(this.newStu);
+
+                    // 重置newStu对象
+                    this.newStu = { name: '', gender: 'm', age: 0, phone: '' }
+                },  
+
+                deleteStu(index){
+                    this.persons.splice(index, 1);
+                }
+                
+            }
+        })
+    </script>
+
+</body>
+
+</html>

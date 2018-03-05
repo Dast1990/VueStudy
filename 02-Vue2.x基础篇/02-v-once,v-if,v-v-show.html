@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/vue.js"></script>
+
+    <div id='demo1'>
+            <p v-once>不可改变：{{msg1}}</p>
+
+            <!-- 需要频繁改变是否隐藏状态的内容的使用v-show,否则使用v-if -->
+            <p v-if="isShow">vif</p>
+            <p v-show="0">vShow</p>
+            <input type="text" v-model="msg1">
+    </div>
+
+    <script>
+    new Vue({
+        el: '#demo1',
+        data: {
+            msg1: "hello1",
+
+            // bool变量 false不能使用逗号包裹
+            isShow: false
+        }
+    })
+
+
+    </script>
+
+
+</body>
+</html>

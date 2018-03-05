@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <p v-text="msg1">{{msg1}}afafas </p>
+
+        <!-- vHtml可以对div中所有内容屏蔽。但是在p标签中，只能屏蔽p的内容,无法屏蔽子标签内容 -->
+        <div v-html="html1">
+            will not show
+            <p>will not show!</p>
+            <input type="text">
+        </div>
+
+        <p v-html="html1">
+            will not show
+            <p>will show!</p>
+            <input type="text">
+        </p>
+
+    </div>
+    <script src='js/vue.js'></script>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg1: 'hello1',
+                html1: '<input type="date"> <input type="color">'
+            }
+        })
+    </script>
+
+</body>
+
+</html>

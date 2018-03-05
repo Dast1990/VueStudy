@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+        <p v-for="str in msg1">
+            {{str}}
+        </p>
+        <p v-for="num in arr1">
+            {{num}}
+        </p>
+        <p v-for="(d, index) in dog">
+            {{index}} : {{d}}
+        </p>
+<p v-for="num in phone">
+    {{num}}
+</p>
+
+    </div>
+    <script src='js/vue.js'></script>
+    
+    <script>
+        var vm=new Vue({
+            el: '#app',
+            data: {
+                msg1: 'hello1',
+                arr1: [1,2,3],
+                dog: {
+                    name: 'wangCai',
+                    age: 5,
+                    color: 'black'
+                },
+                phone:"133122"
+            }
+        })
+     </script>
+    
+</body>
+</html>

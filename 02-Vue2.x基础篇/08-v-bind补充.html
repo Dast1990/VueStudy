@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+   <style>
+       .slted{
+           background-color: orangered;
+           font-size: 30
+       }
+   </style>
+</head>
+<body>
+    <div id='app'>
+
+        <!-- :class是v-bind:class的省略，后面双引号里面可以跟表达式，注意：表达式里的样式名必须用引号引起来！否则无效。 -->
+        <p v-for="(college, index) in colleges" :class="1 == index ? 'slted' : ''">
+            {{college}}
+        </p>
+        <p :style="{color: color1}">
+            今天天气不错！
+        </p>
+    </div>
+    <script src='js/vue.js'></script>
+    
+    <script>
+        var vm=new Vue({
+            el: '#app',
+            data: {
+                msg1: 'hello1',
+                colleges:[
+                    'iOS',
+                    '安卓',
+                    'web',
+                    'AR',
+                    'VR'
+                ],
+
+                // 颜色必须用 单引号 引用，否则运行可发现：Uncaught ReferenceError: red is not defined
+                color1: 'green'
+            }
+        })
+     </script>
+    
+</body>
+</html>

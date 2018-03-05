@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+        <p>{{msg1}}</p>
+        <img v-bind:src="picUrl1" :title="msg1"><br>
+        <img :src="picUrl2" :title="msg1">
+    </div>
+    <script src='js/vue.js'></script>
+    
+    <script>
+        var vm=new Vue({
+            el: '#app',
+            data: {
+                msg1: 'hello1',
+                picUrl1:'pic/01.jpeg',
+                picUrl2:'pic/02.jpeg'
+            }
+        })
+     </script>
+    
+</body>
+</html>

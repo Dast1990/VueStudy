@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+        <p :style="{color: msgColor}">{{msg1}}</p>
+        <!-- <button v-on:click="msg1 = 'world'">更改文字</button>
+        <button v-on:click="msgColor = 'blue'">更改文字颜色</button> -->
+
+        <button v-on:click="f4ChangeText()">更改文字</button>
+        <button @click="f4ChangeTextColor()">更改文字颜色</button>
+          
+    </div>
+    
+    <script src='js/vue.js'></script>
+    
+    <script>
+        var vm=new Vue({
+            el: '#app',
+            data: {
+                msg1: 'hello1',
+                msgColor: 'red'
+            },
+            methods: {
+                f4ChangeText(){
+                    this.msg1 = 'world'
+                },
+                
+                // 方法之间需要添加 逗号!
+                f4ChangeTextColor() {
+                    this.msgColor = 'blue'
+                }
+            }
+        })
+     </script>
+    
+</body>
+</html>

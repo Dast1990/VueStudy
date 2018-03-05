@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <div id='app'>
+       <p v-if="height > 1.8">我的身高大于1.8m，是：{{height}}m</p>
+       <p v-else-if="height >1.6">身高在1.6m到1.8m</p>
+       <p v-else>身高不到1.6m</p>
+       <input type="text" v-model="height"> 
+   </div>
+   <script src='js/vue.js'></script>
+   
+   <script>
+       
+       var vm=new Vue({
+           el: '#app',
+           data: {
+               height: 1.89
+           }
+       })
+    </script>
+
+
+
+</body>
+</html>
