@@ -10,9 +10,11 @@
     <div id='app'>
         <p v-once>不能改变：{{msg1}}</p>
         <p>能改变：{{msg1}}</p>
+       
+        <p>能改变：{{msg1}}</p>
         <p>能改变：{{msg1}}</p>
 
-        <!-- 注意：参数之前不能加 逗号，否则上面两行代码也会无效！ testfasfadsf-->
+        <!-- 注意：参数之前不能加 逗号，否则上面两行代码也会无效！ testfasfadsf tetst-->
         <input type="text" v-model="msg1">
     </div>
     <script src='js/vue.js'></script>
@@ -21,7 +23,8 @@
         var vm=new Vue({
             el: '#app',
             data: {
-                msg1: 'hello1'
+                msg1: 'hello1',
+                msg2: 'hello1'
             }
         })
      </script>
