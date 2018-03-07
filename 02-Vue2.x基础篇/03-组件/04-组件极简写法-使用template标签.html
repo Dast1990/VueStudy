@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id='app'>
+        <p>{{msg1}}</p>
+        <my-div></my-div>
+    </div>
+
+    <!-- TODO:
+        1.template标签定义不是在script中
+        2. Component template should contain exactly one root element. 
+        If you are using v-if on multiple elements, use v-else-if to chain them instead.
+    -->
+    <template id="div1">
+        <div>
+            <img src="../pic/01.jpeg" alt="" width="400px">
+            <p>恩率最美</p>
+        </div>
+    </template>
+
+    <script src='../js/vue.js'></script>
+
+    <script>
+        Vue.component('my-div', {
+
+            // #号引用方法解决了在template对应的双引号内写标签时无法提示的不便！
+            template:'#div1'
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                msg1: 'hello1'
+            }
+        })
+    </script>
+
+</body>
+
+</html>

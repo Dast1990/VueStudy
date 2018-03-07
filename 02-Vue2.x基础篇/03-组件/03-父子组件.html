@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+        <p>{{msg1}}</p>
+        <my-father></my-father>
+    </div>
+    <script src='../js/vue.js'></script>
+
+    <script>
+        let child1 = Vue.extend({
+            template: '<img src="../pic/01.jpeg"></img>'
+        });
+        let child2 = Vue.extend({
+            template: '<p>恩率最美</p>'
+        });
+
+        // TODO:组件名不要包含大写字母！Vue底层会把组件名中大写字母自动转为小写字母！！！
+        Vue.component('my-father', {
+            components:{
+                "my-child1":child1,
+                "my-child2":child2
+            },
+            template:'<div><my-child1></my-child1><my-child2></my-child2></div>'
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                msg1: 'hello1'
+            }
+        })
+     </script>
+    
+</body>
+</html>
