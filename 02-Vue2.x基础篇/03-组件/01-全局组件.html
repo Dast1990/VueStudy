@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+        <my-date></my-date>
+        <my-color></my-color>
+        <p>{{msg1}}</p>
+    </div>
+
+    <div id='app1'>
+        <my-date></my-date>
+        <my-color></my-color>
+        <p>{{msg1}}</p>
+    </div>
+
+    <script src='../js/vue.js'></script>
+    
+    
+    <script>
+
+        // 速记法：etc（粤通卡简称）
+        // 1.构造组件：et
+       let myDate = Vue.extend({
+            template: "<div><p>日期组件</p><input type='date'></div>"
+        });
+
+        let myColor = Vue.extend({
+            template: "<div><p>颜色组件</p><input type='color'></div>"
+        });
+
+        // 2.注册组件：c
+        // Vue.component('my-date', myDate);
+
+
+        new Vue({
+            el: '#app',
+            data: {
+                msg1: 'hello1'
+            },
+
+            //TODO:必须带s
+            components:{
+                'my-date' : myDate,
+                'my-color': myColor
+            }
+        })
+
+        new Vue({
+            el: '#app1',
+            data: {
+                msg1: 'hello1'
+            }
+        })
+     </script>
+    
+</body>
+</html>
