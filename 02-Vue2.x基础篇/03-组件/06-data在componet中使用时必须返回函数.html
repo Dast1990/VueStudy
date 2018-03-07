@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+        <p>{{msg1}}</p>
+        <my-btn></my-btn>
+        <my-btn></my-btn>
+        <my-btn></my-btn>
+        <my-btn></my-btn>
+
+        <!-- 使用自定义组件时，默认无提示，可手打xx*1,点击回车来自动生成；需要几个就*几。 -->
+        <my-btn></my-btn>
+    </div>
+    <template id = 'tmp4btn'>
+        <button @click="btnDidClick()">点击数：{{counter}}</button>
+    </template>
+
+    <script src='../js/vue.js'></script>
+    
+    <script>
+        Vue.component('my-btn',{
+            template:'#tmp4btn',
+
+            // data在component中使用时，必须是函数，不能是键值对；
+            // 这样才能保证每次模板创建的对象的data中属性是唯一的，不是共享的。
+            data(){
+                return{
+                    counter:0
+                }
+            },
+            methods: {
+                btnDidClick(){
+                    this.counter+=1;
+                }
+            }
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                msg1: 'hello1'
+            }
+        })
+     </script>
+    
+</body>
+</html>
