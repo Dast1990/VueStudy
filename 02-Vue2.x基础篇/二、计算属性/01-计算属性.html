@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+        <p>{{msg1}}</p>
+        <p>{{fullName}}</p>
+        <button @click="changeFullName()">点击修改全名</button>
+    </div>
+    <script src='../js/vue.js'></script>
+    
+    <script>
+        var vm=new Vue({
+            el: '#app',
+            data: {
+                msg1:'hello',
+                firstName: 'steve',
+                lastName: 'jobs'
+            },
+            methods:{
+                changeFullName(){
+                    // alert(0)
+                    this.fullName = 'tim kuke'
+                }
+            },
+            computed: {
+                fullName:{
+                    get(){
+                        return this.firstName + " " + this.lastName
+                    }
+                    ,
+                    set(newValue){
+                        // 因无实例变量，故无需设置，否则死循环导致内存溢出，网页报错如下；Uncaught RangeError: Maximum call stack size exceeded
+                        // this.fullName = newValue
+                        //TODO:split,后面没有e。否则网页提示方法不存在。
+                        this.firstName = newValue.split(" ")[0]
+                        this.lastName = newValue.split(" ")[1]
+                    }
+                }
+            }
+        })
+     </script>
+    
+</body>
+</html>
